@@ -18,7 +18,7 @@ class CreateEtudiantsTable extends Migration
             $table->id();
             $table->string('nom', 50);
             $table->string('adresse', 100);
-            $table->string('phone', 13);
+            $table->string('phone', 16);
             $table->string('email', 50)->unique();
             $table->date('date_de_naissance');
             $table->unsignedBigInteger('villeId');
