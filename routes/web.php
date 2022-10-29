@@ -19,4 +19,10 @@ Route::get('/', function () {
 });
 
 Route::get('/etudiants', [EtudiantController::class , 'index'])->name('index');
+Route::post('/store', [EtudiantController::class , 'store'])->name('store');
 Route::get('/etudiants/{etudiant}', [EtudiantController::class , 'show'])->name('show');
+Route::get('/etudiant-edit/{etudiant}', [EtudiantController::class , 'edit'])->name('edit');
+Route::get('/etudiant-create', [EtudiantController::class , 'create'])->name('create');
+Route::put('/etudiant-edit/{etudiant}', [EtudiantController::class , 'update'])->name('update');
+Route::delete('/delete/{etudiant}', [EtudiantController::class , 'destroy'])->name('delete');
+

@@ -15,7 +15,7 @@ class EtudiantController extends Controller
      */
     public function index()
     {
-        $etudiants = Etudiant::select()->paginate(5);
+        $etudiants = Etudiant::select()->paginate(4);
         return view('etudiant.index',['etudiants'=>$etudiants]);
     }
 
@@ -26,7 +26,9 @@ class EtudiantController extends Controller
      */
     public function create()
     {
-        //
+        $ville = new Ville;
+        $villes = $ville->selectVille();
+        return view('etudiant.create', ['villes' => $villes]);
     }
 
     /**
@@ -37,7 +39,18 @@ class EtudiantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newEtudiant = Etudiant::create([
+
+            'nom' => $request->nom,
+            'adresse' => $request->adresse,
+            'phone' => $request->telephone,
+            'email' => $request->email,
+            'date_de_naissance' => $request->date_naissance,
+            'villeId' => $request->ville_id
+
+        ]);
+
+        return redirect(route('index'));
     }
 
     /**
@@ -47,8 +60,10 @@ class EtudiantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Etudiant $etudiant)
+
     {
-        return view('etudiant.show', ['etudiant' => $etudiant]);
+        $ville = Ville::select('nom')->where('id', $etudiant['villeId'])->get();
+        return view('etudiant.show', ['etudiant' => $etudiant, 'ville' => $ville[0]]);
     }
 
     /**
@@ -59,7 +74,10 @@ class EtudiantController extends Controller
      */
     public function edit(Etudiant $etudiant)
     {
-        //
+        $villes = new Ville;
+        $villeCollection = $villes->selectVille();
+        $ville = Ville::select('nom')->where('id', $etudiant['villeId'])->get();
+        return view('etudiant.edit', ['etudiant' => $etudiant,'villes' =>$villeCollection, 'ville' => $ville[0]]);
     }
 
     /**
@@ -71,7 +89,15 @@ class EtudiantController extends Controller
      */
     public function update(Request $request, Etudiant $etudiant)
     {
-        //
+        $etudiant->update([
+            'nom' => $request->from_name,
+            'adresse' => $request->from_adresse,
+            'phone' => $request->from_phone,
+            'email' => $request->from_email,
+            'date_de_naissance' => $request->from_birthday,
+            'villeId' => $request->from_ville
+        ]);
+        return redirect(route('index'));
     }
 
     /**
@@ -82,6 +108,8 @@ class EtudiantController extends Controller
      */
     public function destroy(Etudiant $etudiant)
     {
-        //
+        $etudiant->delete();
+        return redirect(route('index'));
+
     }
 }

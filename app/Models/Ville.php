@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ville extends Model
 {
     use HasFactory;
+    public function selectVille($order = 'ASC') {
+        return $this::select()->orderBy('nom', $order)->get();
+    }
 }
