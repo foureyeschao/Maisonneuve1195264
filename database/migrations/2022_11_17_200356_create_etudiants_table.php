@@ -22,12 +22,18 @@ class CreateEtudiantsTable extends Migration
             $table->string('email', 50)->unique();
             $table->date('date_de_naissance');
             $table->unsignedBigInteger('villeId');
+            $table->unsignedBigInteger('userId');
             $table->timestamps();
         });
 
         Schema::table('etudiants', function (Blueprint $table) {
 
             $table -> foreign ( 'villeId' ) -> references ( 'id' ) -> on ( 'villes' );
+        });
+
+        Schema::table('etudiants', function (Blueprint $table) {
+
+            $table -> foreign ( 'userId' ) -> references ( 'id' ) -> on ( 'users' );
         });
     }
 

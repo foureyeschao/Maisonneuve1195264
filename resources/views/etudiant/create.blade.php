@@ -48,7 +48,7 @@
                 <input type="submit" value="Submit">
 
             </form>
-            <a href="{{ route('index') }}"><button class="btn-secondary btn-accent">Retour</button></a>
+            <a href="{{ route('student.index') }}"><button class="btn-secondary btn-accent">Retour</button></a>
         </div>
     </div>
 

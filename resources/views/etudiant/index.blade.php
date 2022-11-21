@@ -4,9 +4,9 @@
     <div class="container-fluid" style="margin-bottom: 50px;">
         <div class="row mt-3">
             <div class="col-12 col-sm-6 col-md-6">
-                <a href="{{ route('index') }}"><img style="width: 250px" src="{{ asset('img/logo.png') }}" alt="" /></a>
+                <a href="{{ route('student.index') }}"><img style="width: 250px" src="{{ asset('img/logo.png') }}" alt="" /></a>
             </div>
-            <div class="col-12 col-sm-6 col-md-6 text-end mt-2" style="margin-bottom: 30px;"><a class="btn btn-primary" href="{{ route('create') }}" role="button"><i class="fa fa-plus"></i>&nbsp;Ajouter</a></div>
+            <div class="col-12 col-sm-6 col-md-6 text-end mt-2" style="margin-bottom: 30px;"><a class="btn btn-primary" href="{{ route('create') }}" role="button"><i class="fa fa-plus"></i>&nbsp;@lang('lang.text_add')</a></div>
         </div>
         <div class="card mt-4" id="TableSorterCard" style="border-style: none;border-radius: 6.5px;">
             <div class="card-header py-3" style="border-width: 0px;background: rgb(23,25,33);">
@@ -35,7 +35,7 @@
 
                                         <td style="color: rgb(255,255,255);">{{ ucfirst($etudiant->nom) }}</td>
                                         <td style="color: rgb(255,255,255);">{{ ucfirst($etudiant->phone) }}</td>
-                                        <td style="color: rgb(255,255,255);">{{ ucfirst($etudiant->email) }}</td>
+                                        <td style="color: rgb(255,255,255);">{{ $etudiant->email }}</td>
                                         <td class="text-center align-middle" style="max-height: 60px;height: 60px;">
                                             <a class="btn btnMaterial btn-flat primary semicircle" role="button" href="{{ route('show', $etudiant->id) }}" style="color: #00bdff;"><i class="far fa-eye"></i></a>
                                             <a class="btn btnMaterial btn-flat success semicircle" role="button" href="{{ route('edit', $etudiant->id) }}" style="color: rgb(0,197,179);"><i class="fas fa-pen"></i></a>

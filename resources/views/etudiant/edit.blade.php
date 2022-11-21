@@ -16,7 +16,7 @@
                                 <tbody>
                                 <tr>
                                     <td><i class="fa fa-user"></i></td>
-                                    <td>{{ ucfirst( $etudiant->nom) }}</td>
+                                    <td>{{  $etudiant->nom }}</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-birthday-cake"></i></td>
@@ -36,7 +36,7 @@
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-envelope"></i></td>
-                                    <td>{{ ucfirst( $etudiant->email) }}</td>
+                                    <td>{{ $etudiant->email }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -50,21 +50,21 @@
                             <label for="from_name">Nom de l'étudiant</label>
                             <input
                                 class="form-control" type="text" id="from_name" tabindex="-1" name="from_name"
-                                required="" placeholder="Votre nom et prénom">
+                                required="" value='{{  $etudiant->nom }}'>
                         </div>
 
                         <div class="form-group has-feedback">
                             <label for="from_birthday">Date de naissance</label>
                             <input
                                 class="form-control" type="text" id="from_birthday" tabindex="-1" name="from_birthday"
-                                required="" placeholder="1988-09-09">
+                                required="" value='{{ ucfirst( $etudiant->date_de_naissance) }}'>
                         </div>
 
                         <div class="form-group has-feedback">
                             <label for="from_name">Adresse de l'étudiant</label>
                             <input
                                 class="form-control" type="text" id="from_adresse" tabindex="-1" name="from_adresse"
-                                required="" placeholder="8888,avenue pie-ix">
+                                required="" value = '{{ ucfirst( $etudiant->adresse) }}'>
                         </div>
                         <div class="form-group has-feedback">
                             <label for="ville">Ville</label>
@@ -74,7 +74,7 @@
                                 id="ville"
                                 name="from_ville"
                                 required="">
-                                <option value="" class="form-control" selected>Selectionner une ville</option>
+                                <option class="form-control" value="{{$ville->id}}" selected>{{ ucfirst( $ville->nom) }}</option>
                                 @foreach($villes as $ville)
                                     <option value="{{ $ville->id }}" >{{ $ville->nom }}</option>
                                 @endforeach
@@ -82,12 +82,12 @@
                         </div>
                         <div class="form-group has-feedback"><label for="from_phone">Telephone</label><input
                                 class="form-control" type="text" id="from_phone" name="from_phone" required=""
-                                placeholder="+1(514)-777-8888">
+                                value ='{{ ucfirst( $etudiant->phone) }}'>
                         </div>
 
                         <div class="form-group has-feedback"><label for="from_email">Email</label><input
                                 class="form-control" type="email" id="from_email" name="from_email" required=""
-                                placeholder="example@gmail.com">
+                                value = '{{ $etudiant->email }}'>
                         </div>
 
                         <div class="form-group mt-4">
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </form>
-            <a href="{{route('index')}}" class="mx-5">
+            <a href="{{route('student.index')}}" class="mx-5">
                 <button class="btn btn-primary btn-block active" style="background-color:#303641;">Retour<i class="fa fa-chevron-circle-right mx-2"></i></button>
             </a>
         </div>

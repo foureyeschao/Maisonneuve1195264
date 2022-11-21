@@ -21,7 +21,7 @@ class EtudiantFactory extends Factory
             'phone' =>$this->faker->numerify('+1(###)-###-####'),
             'email' => $this->faker->unique()->Email(),
             'date_de_naissance' => $this->faker->date($format='Y-m-d',$max='2007-01-01'),
-            'villeId' => $this->faker->numberBetween($min = 1, $max = 15),
+            'villeId' => Ville::all()->random()->id,
         ];
     }
 }

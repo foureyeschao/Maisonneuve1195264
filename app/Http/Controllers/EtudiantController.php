@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Etudiant;
 use App\Models\Ville;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EtudiantController extends Controller
 {
@@ -46,11 +47,11 @@ class EtudiantController extends Controller
             'phone' => $request->telephone,
             'email' => $request->email,
             'date_de_naissance' => $request->date_naissance,
-            'villeId' => $request->ville_id
-
+            'villeId' => $request->ville_id,
+            'userId' => Auth::user()->id,
         ]);
 
-        return redirect(route('index'));
+        return redirect(route('student.index'));
     }
 
     /**
@@ -76,7 +77,7 @@ class EtudiantController extends Controller
     {
         $villes = new Ville;
         $villeCollection = $villes->selectVille();
-        $ville = Ville::select('nom')->where('id', $etudiant['villeId'])->get();
+        $ville = Ville::select('id','nom')->where('id', $etudiant['villeId'])->get();
         return view('etudiant.edit', ['etudiant' => $etudiant,'villes' =>$villeCollection, 'ville' => $ville[0]]);
     }
 
@@ -97,7 +98,7 @@ class EtudiantController extends Controller
             'date_de_naissance' => $request->from_birthday,
             'villeId' => $request->from_ville
         ]);
-        return redirect(route('index'));
+        return redirect(route('student.index'));
     }
 
     /**
@@ -109,7 +110,7 @@ class EtudiantController extends Controller
     public function destroy(Etudiant $etudiant)
     {
         $etudiant->delete();
-        return redirect(route('index'));
+        return redirect(route('student.index'));
 
     }
 }
